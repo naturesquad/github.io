@@ -1,0 +1,1 @@
+import{h as f}from"./disclose-version.eBex_4Ye.js";function h(n,r,s){s=s==null?null:s+"",(!f||n.getAttribute(r)!==s&&r!=="src"&&r!=="href"&&r!=="srcset")&&(s===null?n.removeAttribute(r):n.setAttribute(r,s))}export{h as a};

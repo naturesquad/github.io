@@ -1,0 +1,4 @@
+import{e as r,f as s,t as a}from"../chunks/disclose-version.eBex_4Ye.js";import{p as i,a as n}from"../chunks/runtime.D55-kyL3.js";import{i as p}from"../chunks/lifecycle.DPqn41Nz.js";var u=a(`<div id="body" class="svelte-19g7s24"><div class="content"><p>Welcome! We are the Evergreen Student Problem Solvers (ESPS), and we are trying to help solve problems within our
+			school district. We want to help with budget reductions, by encouraging our community to support our school
+			levies.</p> <p>We are the future, the leaders and caretakers of tomorrow. We need our community to come together and invest in
+			our education, so that we are better prepared to solve the problems of tomorrow.</p> <p>Whether you are a student, parent, teacher, or community member, we need your help. We welcome you to <a href="/esps/join-us">join us</a> in our mission to support our schools.</p></div></div>`);function d(e,o){n(o,!1),p();var t=s(e,!0,u);r(e,t),i()}export{d as component};
