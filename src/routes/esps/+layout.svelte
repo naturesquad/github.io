@@ -1,18 +1,19 @@
 <script>
+	import {base} from '$app/paths';
 	import espsLogo from '$lib/espsLogo.jpg';
 </script>
 
 <header>
 	<div class="top-header">
 		<h1>Evergreen Student Problem Solvers</h1>
-		<a href="/esps/home"><img width="100" height="100" src={espsLogo} alt="Logo"></a>
+		<a href="{base}/esps/home"><img width="100" height="100" src={espsLogo} alt="Logo"></a>
 	</div>
 	<nav>
 		<ul>
-			<li><a href="/esps/budget">Budget</a></li>
-			<li><a href="/esps/levy">Levy</a></li>
-			<li><a href="/esps/about-us">About Us</a></li>
-			<li><a href="/esps/join-us">Join Us</a></li>
+			<li><a href="{base}/esps/budget">Budget</a></li>
+			<li><a href="{base}/esps/levy">Levy</a></li>
+			<li><a href="{base}/esps/about-us">About Us</a></li>
+			<li><a href="{base}/esps/join-us">Join Us</a></li>
 		</ul>
 	</nav>
 </header>
