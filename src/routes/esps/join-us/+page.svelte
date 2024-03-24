@@ -1,11 +1,44 @@
-<form>
+<script>
+	import { supabase } from '$lib/supabaseClient.js';
+	import ToastGroup from '$lib/ToastGroup.svelte';
+
+	function handleSubmit(event) {
+		const data = Object.fromEntries(new FormData(event.target).entries());
+
+		Object.keys(data).forEach(key => {
+			if (!data[key]) {
+				delete data[key];
+			}
+		});
+
+		// insert a new contact form
+		supabase.from('contact_form').insert([data]).then(({ error }) => {
+			if (error) {
+				/* if error contains "contact_form_email_idx" */
+				if (error.message.includes('contact_form_email_idx')) {
+					toaster.add('Error submitting form: Email address already exists');
+				} else {
+					toaster.add('Error submitting form: ' + error.message);
+				}
+			} else {
+				toaster.add('Form submitted successfully!');
+				event.target.reset();
+			}
+		});
+	}
+
+	let toaster;
+</script>
+
+<ToastGroup bind:this={toaster} />
+<form method="POST" on:submit|preventDefault={handleSubmit}>
 	<div>
-		<label for="name">Name:</label>
-		<input autocomplete="given-name" type="text" name="name" id="name">
+		<label for="name">Name: *</label>
+		<input required autocomplete="given-name" type="text" name="name" id="name">
 	</div>
 	<div>
-		<label for="email">Email address:</label>
-		<input autocomplete="email" type="email" name="email" id="email">
+		<label for="email">Email address: *</label>
+		<input required autocomplete="email" type="email" name="email" id="email">
 	</div>
 	<div>
 		<label for="phone">Phone number: (optional)</label>
@@ -15,57 +48,57 @@
 		<label for="occupation">Are you a:</label>
 		<select name="occupation" id="occupation" autocomplete="occupation">
 			<option value=""></option>
-			<option value="student">Student</option>
-			<option value="parent">Parent</option>
-			<option value="staff">Staff / Faculty</option>
-			<option value="community-member">Community Member</option>
+			<option value="STUDENT">Student</option>
+			<option value="PARENT">Parent</option>
+			<option value="STAFF">Staff / Faculty</option>
+			<option value="COMMUNITY_MEMBER">Community Member</option>
 		</select>
 	</div>
 	<div>
-		<label for="schools">What school(s) (if any) are you connected with?</label>
-		<select autocomplete="school" name="schools" id="schools">
-			<option value="none">None</option>
+		<label for="school">What school(s) (if any) are you connected with?</label>
+		<select autocomplete="school" name="school" id="school">
+			<option value="">None</option>
 			<optgroup label="Specialty Schools">
-				<option value="hollingsworth">Hollingsworth Academy</option>
-				<option value="cascadia">Cascadia Tech</option>
-				<option value="home-choice">Home Choice Academy</option>
-				<option value="archway">Archway Academy</option>
+				<option value="HOLLINGSWORTH">Hollingsworth Academy</option>
+				<option value="CASCADIA">Cascadia Tech</option>
+				<option value="HOME_CHOICE">Home Choice Academy</option>
+				<option value="ARCHWAY">Archway Academy</option>
 			</optgroup>
 			<optgroup label="High Schools">
-				<option value="evergreen">Evergreen</option>
-				<option value="henrietta-lacks">Henrietta Lacks Health and Bioscience</option>
-				<option value="heritage">Heritage</option>
-				<option value="legacy">Legacy</option>
-				<option value="mountain-view">Mountain View</option>
-				<option value="union">Union</option>
+				<option value="EVERGREEN">Evergreen</option>
+				<option value="HENRIETTA_LACKS">Henrietta Lacks Health and Bioscience</option>
+				<option value="HERITAGE">Heritage</option>
+				<option value="LEGACY">Legacy</option>
+				<option value="MOUNTAIN_VIEW">Mountain View</option>
+				<option value="UNION">Union</option>
 			</optgroup>
 			<optgroup label="Middle Schools">
-				<option value="cascade">Cascade</option>
-				<option value="covington">Covington</option>
-				<option value="frontier">Frontier</option>
-				<option value="pacific">Pacific</option>
-				<option value="shahala">Shahala</option>
-				<option value="wyeast">Wy'east</option>
+				<option value="CASCADE">Cascade</option>
+				<option value="COVINGTON">Covington</option>
+				<option value="FRONTIER">Frontier</option>
+				<option value="PACIFIC">Pacific</option>
+				<option value="SHAHALA">Shahala</option>
+				<option value="WYEAST">Wy'east</option>
 			</optgroup>
 			<optgroup label="Elementary Schools">
-				<option value="burton">Burton</option>
-				<option value="columbia-valley">Columbia Valley</option>
-				<option value="crestline">Crestline</option>
-				<option value="ellsworth">Ellsworth</option>
-				<option value="endeavour">Endeavour</option>
-				<option value="fircrest">Fircrest</option>
-				<option value="fishers-landing">Fisher's Landing</option>
-				<option value="harmony">Harmony</option>
-				<option value="hearthwood">Hearthwood</option>
-				<option value="illahee">Illahee</option>
-				<option value="image">Image</option>
-				<option value="marrion">Marrion</option>
-				<option value="mill-plain">Mill Plain</option>
-				<option value="orchards">Orchards</option>
-				<option value="pioneer">Pioneer</option>
-				<option value="riverview">Riverview</option>
-				<option value="sifton">Sifton</option>
-				<option value="silver-star">Silver Star</option>
+				<option value="BURTON">Burton</option>
+				<option value="COLUMBIA_VALLEY">Columbia Valley</option>
+				<option value="CRESTLINE">Crestline</option>
+				<option value="ELLSWORTH">Ellsworth</option>
+				<option value="ENDEAVOUR">Endeavour</option>
+				<option value="FIRCREST">Fircrest</option>
+				<option value="FISHERS_LANDING">Fisher's Landing</option>
+				<option value="HARMONY">Harmony</option>
+				<option value="HEARTHWOOD">Hearthwood</option>
+				<option value="ILLAHEE">Illahee</option>
+				<option value="IMAGE">Image</option>
+				<option value="MARRION">Marrion</option>
+				<option value="MILL_PLAIN">Mill Plain</option>
+				<option value="ORCHARDS">Orchards</option>
+				<option value="PIONEER">Pioneer</option>
+				<option value="RIVERVIEW">Riverview</option>
+				<option value="SIFTON">Sifton</option>
+				<option value="SILVER_STAR">Silver Star</option>
 			</optgroup>
 		</select>
 	</div>
@@ -75,6 +108,70 @@
 	</div>
 	<input type="submit" value="Submit">
 </form>
+
+
+<!--
+postgreSQL
+
+CREATE TYPE occupation AS ENUM (
+	'STUDENT',
+	'PARENT',
+	'STAFF',
+	'COMMUNITY_MEMBER'
+);
+
+CREATE TYPE school AS ENUM (
+	'NONE',
+	'HOLLINGSWORTH',
+	'CASCADIA',
+	'HOME_CHOICE',
+	'ARCHWAY',
+	'EVERGREEN',
+	'HENRIETTA_LACKS',
+	'HERITAGE',
+	'LEGACY',
+	'MOUNTAIN_VIEW',
+	'UNION',
+	'CASCADE',
+	'COVINGTON',
+	'FRONTIER',
+	'PACIFIC',
+	'SHAHALA',
+	'WYEAST',
+	'BURTON',
+	'COLUMBIA_VALLEY',
+	'CRESTLINE',
+	'ELLSWORTH',
+	'ENDEAVOUR',
+	'FIRCREST',
+	'FISHERS_LANDING',
+	'HARMONY',
+	'HEARTHWOOD',
+	'ILLAHEE',
+	'IMAGE',
+	'MARRION',
+	'MILL_PLAIN',
+	'ORCHARDS',
+	'PIONEER',
+	'RIVERVIEW',
+	'SIFTON',
+	'SILVER_STAR'
+);
+
+CREATE DOMAIN PHONE_NUMBER AS VARCHAR(10) CHECK(VALUE ~ '^[0-9]{10}$');
+
+CREATE TABLE contact_form (
+  contact_form_id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone PHONE_NUMBER,
+  occupation OCCUPATION,
+  school SCHOOL,
+  message TEXT
+  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-->
+
 
 <style>
     form {
