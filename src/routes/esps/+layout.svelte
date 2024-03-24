@@ -1,6 +1,8 @@
 <script>
 	import espsLogo from '$lib/espsLogo.jpg';
+	import { page } from '$app/stores';
 </script>
+
 
 <header>
 	<div class="top-header">
@@ -9,10 +11,10 @@
 	</div>
 	<nav>
 		<ul>
-			<li><a href="/esps/budget">Budget</a></li>
-			<li><a href="/esps/levy">Levy</a></li>
-			<li><a href="/esps/about-us">About Us</a></li>
-			<li><a href="/esps/join-us">Join Us</a></li>
+			<li><a href="/esps/budget" class:current={$page.route.id === '/esps/budget'}>Budget</a></li>
+			<li><a href="/esps/levy" class:current={$page.route.id === '/esps/levy'}>Levy</a></li>
+			<li><a href="/esps/about-us" class:current={$page.route.id === '/esps/about-us'}>About Us</a></li>
+			<li><a href="/esps/join-us" class:current={$page.route.id === '/esps/join-us'}>Join Us</a></li>
 		</ul>
 	</nav>
 </header>
@@ -21,6 +23,9 @@
 </main>
 
 <style>
+		.current {
+				text-decoration: underline;
+    }
     div.top-header {
 				display: flex;
         justify-content: space-around;
