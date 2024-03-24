@@ -21,13 +21,6 @@
 </main>
 
 <style>
-		:global(body) {
-				/*background: linear-gradient(90deg, rgba(180,255,255,1) 0%, rgba(255,180,255,1) 50%, rgba(255,255,180,0) 100%);*/
-				margin: 0 auto;
-				padding: 0;
-				height: 100vh;
-    }
-
     div.top-header {
 				display: flex;
         justify-content: space-around;

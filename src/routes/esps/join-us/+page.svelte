@@ -1,17 +1,62 @@
 <script>
 	import { supabase } from '$lib/supabaseClient.js';
 	import ToastGroup from '$lib/ToastGroup.svelte';
+	import InputFieldPhone from '$lib/InputFieldPhone.svelte';
+
+	let busy = false;
+	const schools = [
+		{ type: 'Specialty Schools', name: 'Archway Academy', value: 'ARCHWAY' },
+		{ type: 'Specialty Schools', name: 'Cascadia Tech', value: 'CASCADIA' },
+		{ type: 'Specialty Schools', name: 'Hollingsworth Academy', value: 'HOLLINGSWORTH' },
+		{ type: 'Specialty Schools', name: 'Home Choice Academy', value: 'HOME_CHOICE' },
+		{ type: 'High Schools', name: 'Evergreen', value: 'EVERGREEN' },
+		{ type: 'High Schools', name: 'Henrietta Lacks', value: 'HENRIETTA_LACKS' },
+		{ type: 'High Schools', name: 'Heritage', value: 'HERITAGE' },
+		{ type: 'High Schools', name: 'Legacy', value: 'LEGACY' },
+		{ type: 'High Schools', name: 'Mountain View', value: 'MOUNTAIN_VIEW' },
+		{ type: 'High Schools', name: 'Union', value: 'UNION' },
+		{ type: 'Middle Schools', name: 'Cascade', value: 'CASCADE' },
+		{ type: 'Middle Schools', name: 'Covington', value: 'COVINGTON' },
+		{ type: 'Middle Schools', name: 'Frontier', value: 'FRONTIER' },
+		{ type: 'Middle Schools', name: 'Pacific', value: 'PACIFIC' },
+		{ type: 'Middle Schools', name: 'Shahala', value: 'SHAHALA' },
+		{ type: 'Middle Schools', name: 'Wy\'east', value: 'WYEAST' },
+		{ type: 'Elementary Schools', name: 'Burton', value: 'BURTON' },
+		{ type: 'Elementary Schools', name: 'Columbia Valley', value: 'COLUMBIA_VALLEY' },
+		{ type: 'Elementary Schools', name: 'Crestline', value: 'CRESTLINE' },
+		{ type: 'Elementary Schools', name: 'Ellsworth', value: 'ELLSWORTH' },
+		{ type: 'Elementary Schools', name: 'Endeavour', value: 'ENDEAVOUR' },
+		{ type: 'Elementary Schools', name: 'Fircrest', value: 'FIRCREST' },
+		{ type: 'Elementary Schools', name: 'Fisher\'s Landing', value: 'FISHERS_LANDING' },
+		{ type: 'Elementary Schools', name: 'Harmony', value: 'HARMONY' },
+		{ type: 'Elementary Schools', name: 'Hearthwood', value: 'HEARTHWOOD' },
+		{ type: 'Elementary Schools', name: 'Illahee', value: 'ILLAHEE' },
+		{ type: 'Elementary Schools', name: 'Image', value: 'IMAGE' },
+		{ type: 'Elementary Schools', name: 'Marrion', value: 'MARRION' },
+		{ type: 'Elementary Schools', name: 'Mill Plain', value: 'MILL_PLAIN' },
+		{ type: 'Elementary Schools', name: 'Orchards', value: 'ORCHARDS' },
+		{ type: 'Elementary Schools', name: 'Pioneer', value: 'PIONEER' },
+		{ type: 'Elementary Schools', name: 'Riverview', value: 'RIVERVIEW' },
+		{ type: 'Elementary Schools', name: 'Sifton', value: 'SIFTON' },
+		{ type: 'Elementary Schools', name: 'Silver Star', value: 'SILVER_STAR' }
+	];
+	let selectedSchools = [];
 
 	function handleSubmit(event) {
-		const data = Object.fromEntries(new FormData(event.target).entries());
+		const formData = new FormData(event.target);
+		const data = Object.fromEntries(formData.entries());
+		data.schools = `{${formData.getAll('schools').join(', ')}}`;
+		data.phone = data.phone.replace(/\D/g, '');
 
 		Object.keys(data).forEach(key => {
 			if (!data[key]) {
 				delete data[key];
 			}
 		});
+		console.log({ data })
 
 		// insert a new contact form
+		busy = true;
 		supabase.from('contact_form').insert([data]).then(({ error }) => {
 			if (error) {
 				/* if error contains "contact_form_email_idx" */
@@ -24,8 +69,11 @@
 				toaster.add('Form submitted successfully!');
 				event.target.reset();
 			}
+			busy = false;
 		});
 	}
+
+	$: console.log({ selectedSchools });
 
 	let toaster;
 </script>
@@ -41,8 +89,9 @@
 		<input required autocomplete="email" type="email" name="email" id="email">
 	</div>
 	<div>
-		<label for="phone">Phone number: (optional)</label>
-		<input autocomplete="tel" type="tel" name="phone" id="phone">
+		<label for="phone">Phone (optional):</label>
+		<InputFieldPhone name="phone" id="phone"/>
+<!--		<input autocomplete="tel" type="tel" name="phone" id="phone">-->
 	</div>
 	<div>
 		<label for="occupation">Are you a:</label>
@@ -55,123 +104,29 @@
 		</select>
 	</div>
 	<div>
-		<label for="school">What school(s) (if any) are you connected with?</label>
-		<select autocomplete="school" name="school" id="school">
-			<option value="">None</option>
-			<optgroup label="Specialty Schools">
-				<option value="HOLLINGSWORTH">Hollingsworth Academy</option>
-				<option value="CASCADIA">Cascadia Tech</option>
-				<option value="HOME_CHOICE">Home Choice Academy</option>
-				<option value="ARCHWAY">Archway Academy</option>
-			</optgroup>
-			<optgroup label="High Schools">
-				<option value="EVERGREEN">Evergreen</option>
-				<option value="HENRIETTA_LACKS">Henrietta Lacks Health and Bioscience</option>
-				<option value="HERITAGE">Heritage</option>
-				<option value="LEGACY">Legacy</option>
-				<option value="MOUNTAIN_VIEW">Mountain View</option>
-				<option value="UNION">Union</option>
-			</optgroup>
-			<optgroup label="Middle Schools">
-				<option value="CASCADE">Cascade</option>
-				<option value="COVINGTON">Covington</option>
-				<option value="FRONTIER">Frontier</option>
-				<option value="PACIFIC">Pacific</option>
-				<option value="SHAHALA">Shahala</option>
-				<option value="WYEAST">Wy'east</option>
-			</optgroup>
-			<optgroup label="Elementary Schools">
-				<option value="BURTON">Burton</option>
-				<option value="COLUMBIA_VALLEY">Columbia Valley</option>
-				<option value="CRESTLINE">Crestline</option>
-				<option value="ELLSWORTH">Ellsworth</option>
-				<option value="ENDEAVOUR">Endeavour</option>
-				<option value="FIRCREST">Fircrest</option>
-				<option value="FISHERS_LANDING">Fisher's Landing</option>
-				<option value="HARMONY">Harmony</option>
-				<option value="HEARTHWOOD">Hearthwood</option>
-				<option value="ILLAHEE">Illahee</option>
-				<option value="IMAGE">Image</option>
-				<option value="MARRION">Marrion</option>
-				<option value="MILL_PLAIN">Mill Plain</option>
-				<option value="ORCHARDS">Orchards</option>
-				<option value="PIONEER">Pioneer</option>
-				<option value="RIVERVIEW">Riverview</option>
-				<option value="SIFTON">Sifton</option>
-				<option value="SILVER_STAR">Silver Star</option>
-			</optgroup>
-		</select>
+		<label for="schools">What school(s) are you connected with?</label>
+		<details id="schools" role="list">
+			<summary>{selectedSchools.length === 1 ? schools.find(school => school.value === selectedSchools[0]).name : selectedSchools.length ?  "Multiple selected" : "None"}</summary>
+			<ul>
+				{#each ['Elementary Schools', 'Middle Schools', 'High Schools', 'Specialty Schools'] as schoolType}
+					<optGroup label={schoolType}/>
+					{#each schools.filter(school => school.type === schoolType) as {name, value}, i}
+						<li>
+							<label>
+								<input type="checkbox" id={value} name="schools" bind:group={selectedSchools} value={value}>{name}
+							</label>
+						</li>
+					{/each}
+				{/each}
+			</ul>
+		</details>
 	</div>
 	<label for="message">Any other feedback or comments you want to share with us:</label>
 	<div>
 		<textarea name="message" id="message"></textarea>
 	</div>
-	<input type="submit" value="Submit">
+	<input type="submit" value="Submit" aria-busy={busy}>
 </form>
-
-
-<!--
-postgreSQL
-
-CREATE TYPE occupation AS ENUM (
-	'STUDENT',
-	'PARENT',
-	'STAFF',
-	'COMMUNITY_MEMBER'
-);
-
-CREATE TYPE school AS ENUM (
-	'NONE',
-	'HOLLINGSWORTH',
-	'CASCADIA',
-	'HOME_CHOICE',
-	'ARCHWAY',
-	'EVERGREEN',
-	'HENRIETTA_LACKS',
-	'HERITAGE',
-	'LEGACY',
-	'MOUNTAIN_VIEW',
-	'UNION',
-	'CASCADE',
-	'COVINGTON',
-	'FRONTIER',
-	'PACIFIC',
-	'SHAHALA',
-	'WYEAST',
-	'BURTON',
-	'COLUMBIA_VALLEY',
-	'CRESTLINE',
-	'ELLSWORTH',
-	'ENDEAVOUR',
-	'FIRCREST',
-	'FISHERS_LANDING',
-	'HARMONY',
-	'HEARTHWOOD',
-	'ILLAHEE',
-	'IMAGE',
-	'MARRION',
-	'MILL_PLAIN',
-	'ORCHARDS',
-	'PIONEER',
-	'RIVERVIEW',
-	'SIFTON',
-	'SILVER_STAR'
-);
-
-CREATE DOMAIN PHONE_NUMBER AS VARCHAR(10) CHECK(VALUE ~ '^[0-9]{10}$');
-
-CREATE TABLE contact_form (
-  contact_form_id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  email TEXT NOT NULL,
-  phone PHONE_NUMBER,
-  occupation OCCUPATION,
-  school SCHOOL,
-  message TEXT
-  created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
--->
-
 
 <style>
     form {
@@ -196,13 +151,12 @@ CREATE TABLE contact_form (
         width: 100%;
     }
 
-    /*	Make the text input and text area full width */
     input[type="text"],
     input[type="email"],
-    input[type="tel"],
     select,
+    details[role="list"],
     textarea {
         flex: 1;
-    }
-
+				box-sizing: border-box;
+		}
 </style>
