@@ -73,8 +73,6 @@
 		});
 	}
 
-	$: console.log({ selectedSchools });
-
 	let toaster;
 </script>
 

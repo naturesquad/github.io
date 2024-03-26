@@ -3,7 +3,6 @@
 	import { page } from '$app/stores';
 </script>
 
-
 <header>
 	<div class="top-header">
 		<h1>Evergreen Student Problem Solvers</h1>
@@ -13,8 +12,8 @@
 		<ul>
 			<li><a href="/esps/budget" class:current={$page.route.id === '/esps/budget'}>Budget</a></li>
 			<li><a href="/esps/levy" class:current={$page.route.id === '/esps/levy'}>Levy</a></li>
-			<li><a href="/esps/about-us" class:current={$page.route.id === '/esps/about-us'}>About Us</a></li>
-			<li><a href="/esps/join-us" class:current={$page.route.id === '/esps/join-us'}>Join Us</a></li>
+			<li><a href="/esps/about-us" class:current={$page.route.id === '/esps/about-us'}>About&nbsp;Us</a></li>
+			<li><a href="/esps/join-us" class:current={$page.route.id === '/esps/join-us'}>Join&nbsp;Us</a></li>
 		</ul>
 	</nav>
 </header>
@@ -35,7 +34,7 @@
 
     h1 {
         flex-basis: 90%;
-				font-size: xxx-large;
+				font-size: min(1rem + 5vw, 3rem);
         vertical-align: middle;
 				padding:0;
 				margin: 0;
@@ -59,12 +58,13 @@
         display: flex;
         justify-content: space-around;
 				gap: 1rem;
+				width: min(36rem, 100%);
     }
 
     nav ul li {
         list-style: none;
 				width: 9rem;
-				font-size: 1.5rem;
+				font-size: min(5vw, 1.5rem);
 				text-align: center;
     }
 

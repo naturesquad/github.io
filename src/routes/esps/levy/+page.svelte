@@ -63,11 +63,15 @@
     summary {
         font-weight: bold;
         font-size: x-large;
-        padding-block: 1rem;
+				line-height: 3rem;
     }
 
 		.emoji {
 				font-size: 1.5rem;
 				display: none;
+		}
+
+		details summary::after {
+				height: 3rem;
 		}
 </style>

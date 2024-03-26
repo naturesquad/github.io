@@ -60,6 +60,10 @@
     summary {
         font-weight: bold;
         font-size: x-large;
-        padding-block: 1rem;
+        line-height: 3rem;
+    }
+
+    details summary::after {
+        height: 3rem;
     }
 </style>
