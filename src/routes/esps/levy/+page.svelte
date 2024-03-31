@@ -11,10 +11,10 @@
 		Our district is funded by two different levies. An Operations Levy, and Technology levy. The Operations Levy funds
 		educational programs and day-to-day operations of schools. Things like:
 	<ul>
-	<li>Teachers and staff support <span class="emoji">👨‍🏫</span>
-	<li>Extracurricular activities (music, arts, athletics) <span class="emoji">🎵 🖌️ ⚽</span>
-	<li>Classroom textbooks, equipment and supplies <span class="emoji">📖 🎒</span>
-	<li>Student transportation <span class="emoji">🚌</span>
+		<li>Teachers and staff support <span class="emoji">👨‍🏫</span>
+		<li>Extracurricular activities (music, arts, athletics) <span class="emoji">🎵 🖌️ ⚽</span>
+		<li>Classroom textbooks, equipment and supplies <span class="emoji">📖 🎒</span>
+		<li>Student transportation <span class="emoji">🚌</span>
 	</ul>
 	<p>
 		The separate Technology Levy funds chromebooks, software and other technology improvements. Levies do not fund
@@ -54,7 +54,7 @@
 		levies. Our district is eligible for a total of $22.9 million in state Equalization Funds between 2022 and 2025,
 		because our 2022 Operations Levy passed. See the table below from 2022 for a summary of the equalization funds from
 		the 2022 Levy.
-		<img alt="levy equalization" src={levyEqualization}>
+	<img alt="levy equalization" src={levyEqualization}>
 </details>
 
 <p>Please visit the district’s <a href="https://www.evergreenps.org/levy">levy page</a> for more information.</p>
@@ -63,15 +63,20 @@
     summary {
         font-weight: bold;
         font-size: x-large;
-				line-height: 3rem;
+        line-height: 3rem;
     }
 
-		.emoji {
-				font-size: 1.5rem;
-				display: none;
-		}
+    .emoji {
+        font-size: 1.5rem;
+        display: none;
+    }
 
-		details summary::after {
-				height: 3rem;
-		}
+    img {
+        padding-top: 2rem;
+    }
+
+    details summary::after {
+        height: 3rem;
+    }
+
 </style>

@@ -1,12 +1,18 @@
 <script>
-	import espsLogo from '$lib/espsLogo.jpg';
 	import { page } from '$app/stores';
 </script>
 
 <header>
 	<div class="top-header">
 		<h1>Evergreen Student Problem Solvers</h1>
-		<a href="/esps/home"><img width="100" height="100" src={espsLogo} alt="Logo"></a>
+		<a href="/esps/home">
+			<div id="icon">
+				<span>E</span>
+				<span>S</span>
+				<span>P</span>
+				<span>S</span>
+			</div>
+		</a>
 	</div>
 	<nav>
 		<ul>
@@ -41,11 +47,32 @@
 				text-wrap: balance;
     }
 
-    img {
-        flex-basis: 10%;
-        vertical-align: middle;
-        mix-blend-mode: multiply;
-    }
+    #icon {
+				background: lightgray;
+				width: 100px;
+				height: 100px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 90px;
+				font-size: 1.5rem;
+				font-weight: bold;
+
+				& span:nth-child(1) {
+					color: blue;
+				}
+
+        & span:nth-child(2) {
+            color: green;
+        }
+
+				& span:nth-child(3) {
+						color: blue;
+				}
+
+				& span:nth-child(4) {
+						color: green;
+				}
+		}
 
     nav {
 				background: black;
@@ -78,5 +105,6 @@
     main {
         max-width: 36rem;
         margin: 1rem auto 0;
+				padding-inline: 1rem;
     }
 </style>

@@ -63,6 +63,10 @@
         line-height: 3rem;
     }
 
+    img {
+        padding-top: 2rem;
+    }
+
     details summary::after {
         height: 3rem;
     }

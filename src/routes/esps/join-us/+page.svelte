@@ -7,7 +7,7 @@
 	const schools = [
 		{ type: 'Specialty Schools', name: 'Archway Academy', value: 'ARCHWAY' },
 		{ type: 'Specialty Schools', name: 'Cascadia Tech', value: 'CASCADIA' },
-		{ type: 'Specialty Schools', name: 'Hollingsworth Academy', value: 'HOLLINGSWORTH' },
+		{ type: 'Specialty Schools', name: 'Hollings&shy;worth Academy', value: 'HOLLINGSWORTH' },
 		{ type: 'Specialty Schools', name: 'Home Choice Academy', value: 'HOME_CHOICE' },
 		{ type: 'High Schools', name: 'Evergreen', value: 'EVERGREEN' },
 		{ type: 'High Schools', name: 'Henrietta Lacks', value: 'HENRIETTA_LACKS' },
@@ -20,14 +20,14 @@
 		{ type: 'Middle Schools', name: 'Frontier', value: 'FRONTIER' },
 		{ type: 'Middle Schools', name: 'Pacific', value: 'PACIFIC' },
 		{ type: 'Middle Schools', name: 'Shahala', value: 'SHAHALA' },
-		{ type: 'Middle Schools', name: 'Wy\'east', value: 'WYEAST' },
+		{ type: 'Middle Schools', name: 'Wy&apos;east', value: 'WYEAST' },
 		{ type: 'Elementary Schools', name: 'Burton', value: 'BURTON' },
 		{ type: 'Elementary Schools', name: 'Columbia Valley', value: 'COLUMBIA_VALLEY' },
 		{ type: 'Elementary Schools', name: 'Crestline', value: 'CRESTLINE' },
 		{ type: 'Elementary Schools', name: 'Ellsworth', value: 'ELLSWORTH' },
 		{ type: 'Elementary Schools', name: 'Endeavour', value: 'ENDEAVOUR' },
 		{ type: 'Elementary Schools', name: 'Fircrest', value: 'FIRCREST' },
-		{ type: 'Elementary Schools', name: 'Fisher\'s Landing', value: 'FISHERS_LANDING' },
+		{ type: 'Elementary Schools', name: 'Fisher&apos;s Landing', value: 'FISHERS_LANDING' },
 		{ type: 'Elementary Schools', name: 'Harmony', value: 'HARMONY' },
 		{ type: 'Elementary Schools', name: 'Hearthwood', value: 'HEARTHWOOD' },
 		{ type: 'Elementary Schools', name: 'Illahee', value: 'ILLAHEE' },
@@ -111,7 +111,7 @@
 					{#each schools.filter(school => school.type === schoolType) as {name, value}, i}
 						<li>
 							<label>
-								<input type="checkbox" id={value} name="schools" bind:group={selectedSchools} value={value}>{name}
+								<input type="checkbox" id={value} name="schools" bind:group={selectedSchools} value={value}>{@html name}
 							</label>
 						</li>
 					{/each}
@@ -156,5 +156,14 @@
     textarea {
         flex: 1;
 				box-sizing: border-box;
+		}
+
+		label:has(input[name="schools"]) {
+        text-wrap: unset !important;
+				width:100%;
+		}
+
+		ul {
+        text-wrap: unset !important;
 		}
 </style>

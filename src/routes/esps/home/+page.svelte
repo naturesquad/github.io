@@ -1,10 +1,4 @@
-<script>
-	import raar from '$lib/raar.webp';
-</script>
-
-
 <div id="body">
-<!--	<img src={raar} alt="HeroPic">-->
 	<div class="content">
 		<p>
 			Welcome! We are the Evergreen Student Problem Solvers (ESPS), and we are trying to help solve problems within our
