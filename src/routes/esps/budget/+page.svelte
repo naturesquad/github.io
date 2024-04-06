@@ -3,6 +3,11 @@
 	import studentFTEBarChart from '$lib/studentFTEBarChart.png';
 </script>
 
+<svelte:head>
+	<title>ESPS - Budget</title>
+	<meta name="description" content="Questions and answer about the Evergreen School District budget">
+</svelte:head>
+
 <p>
 	We're here to answer your questions about the district's budget. Below are some frequently asked questions about the
 	budget, and the district's financial situation. All of this information comes from the district's

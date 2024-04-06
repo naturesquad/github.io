@@ -14,6 +14,12 @@
 	});
 </script>
 
+<svelte:head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="ESPS, Evergreen Student Problem Solvers, Evergreen School District, Vancouver, Washington, WA, school, levy, budget, reduction, community, support, join, mission">
+	<meta name="robots" content="index, follow">
+</svelte:head>
+
 <header>
 	<div class="top-header">
 		<h1>Evergreen Student Problem Solvers</h1>

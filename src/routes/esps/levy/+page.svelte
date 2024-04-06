@@ -5,6 +5,11 @@
 	import levyEqualization from '$lib/levyEqualization.png';
 </script>
 
+<svelte:head>
+	<title>ESPS - Levy</title>
+	<meta name="description" content="Questions and answer about the Evergreen School District levy">
+</svelte:head>
+
 <p>
 	Have questions about the levy? We have answers! Here are some frequently asked questions about the levy.
 	All information is sourced from the district’s <a href="https://www.evergreenps.org/levy">levy page</a>.

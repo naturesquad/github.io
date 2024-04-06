@@ -1,3 +1,8 @@
+<svelte:head>
+	<title>ESPS - Home</title>
+	<meta name="description" content="We are the Evergreen Student Problem Solvers (ESPS), and we are trying to help our school district with budget challenges">
+</svelte:head>
+
 <div id="body">
 	<div class="content">
 		<p>

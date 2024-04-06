@@ -1,3 +1,8 @@
+<svelte:head>
+    <title>ESPS - About Us</title>
+    <meta name="description" content="We are the Evergreen Student Problem Solvers (ESPS), and we are trying to help our school district with budget challenges">
+</svelte:head>
+
 <h1>Who Are We?</h1>
 <p>We are Evergreen Student Problem Solvers (ESPS), a group of concerned students and educators. We are collaborating to
     solve problems within Evergreen Public Schools (EPS), specifically making a big impact on budget cuts.
@@ -6,7 +11,7 @@
 <p>Although EPS has been successful in passing recent levies, the last Operations Levy passed by a narrow margin. There are real
     concerns about the success of future levies. The next Operations Levy will be on the ballot in two years. We need to educate our
     community about the need for additional school funding.</p>
-<p>Evergreen Public Schools has made budget cuts for the last three consecutive years. The district is expected to face
+<p>Evergreen Public Schools has made budget cuts for the last three consecutive years. The district is facing
     a $16 to $20 million budget shortfall for the 2024-25 school year. This is not acceptable and negatively
     impacts all student learners. But there is hope through action!</p>
 <p>We need community members to vote in favor of the next levy. Ensuring that children receive the best education

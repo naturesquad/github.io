@@ -76,6 +76,11 @@
 	let toaster;
 </script>
 
+<svelte:head>
+	<title>ESPS - Join Us</title>
+	<meta name="description" content="Join the Evergreen Student Problem Solvers" />
+</svelte:head>
+
 <ToastGroup bind:this={toaster} />
 <form method="POST" on:submit|preventDefault={handleSubmit}>
 	<div>
@@ -166,5 +171,9 @@
 
 		ul {
         text-wrap: unset !important;
+		}
+
+		input[type="submit"] {
+			font-weight: bold;
 		}
 </style>
