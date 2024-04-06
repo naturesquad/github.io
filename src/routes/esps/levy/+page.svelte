@@ -5,10 +5,15 @@
 	import levyEqualization from '$lib/levyEqualization.png';
 </script>
 
+<p>
+	Have questions about the levy? We have answers! Here are some frequently asked questions about the levy.
+	All information is sourced from the district’s <a href="https://www.evergreenps.org/levy">levy page</a>.
+</p>
+
 <details>
 	<summary>What is a levy?</summary>
 	<p>
-		Our district is funded by two different levies. An Operations Levy, and Technology levy. The Operations Levy funds
+		Our district is funded by two different levies: an Operations Levy, and Technology Levy. The Operations Levy funds
 		educational programs and day-to-day operations of schools. Things like:
 	<ul>
 		<li>Teachers and staff support <span class="emoji">👨‍🏫</span>
@@ -17,7 +22,7 @@
 		<li>Student transportation <span class="emoji">🚌</span>
 	</ul>
 	<p>
-		The separate Technology Levy funds chromebooks, software and other technology improvements. Levies do not fund
+		The separate Technology Levy funds chromebooks, software, and other technology improvements. Levies do not fund
 		building improvements or construction, which are funded through bonds.
 </details>
 
@@ -25,7 +30,7 @@
 	<summary>When is the next levy?</summary>
 	<p>
 		The most recent Operations Levy was approved on April 26, 2022, and funds educational programs from 2023 through
-		2025. The next levy will come to the public for a vote early in 2025.
+		2025. The next Operations Levy will come to the public for a vote early in 2025.
 </details>
 <details>
 	<summary>How much impact does the levy have on the budget?</summary>
@@ -45,8 +50,8 @@
 	<summary>How does the levy impact my taxes?</summary>
 	<p>The Operations Levy is not a new tax. Our current Operations Levy funds educational programs through 2025. The next
 		Operations Levy will fund student learning from 2026 through 2028.
-	<p>Our current Operations Levy tax rate is $1.70 per $1,000 of assessed value. When coupled with our existing Bond
-		measure and Technology Levy, the total school tax rate is $3.48 per $1,000 of assessed property value. Our current
+	<p>Our current Operations Levy tax rate is $1.70 per $1,000 of assessed property value. When coupled with our existing Bond
+		Measure and Technology Levy, the total school tax rate is $3.48 per $1,000 of assessed property value. Our current
 		school tax rate is the lowest it has been since 2018.
 		<img alt="historic and projected local property tax rates" src={taxRates}>
 	<p>Another benefit of passing the levy, is that the state provides matching Equalization Funds for districts with
@@ -57,9 +62,13 @@
 	<img alt="levy equalization" src={levyEqualization}>
 </details>
 
-<p>Please visit the district’s <a href="https://www.evergreenps.org/levy">levy page</a> for more information.</p>
+<p class="last">Please visit the district’s <a href="https://www.evergreenps.org/levy">levy page</a> for more information.</p>
 
 <style>
+    .last {
+        padding-block: 2rem;
+    }
+
     summary {
         font-weight: bold;
         font-size: x-large;

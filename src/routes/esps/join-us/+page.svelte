@@ -89,7 +89,6 @@
 	<div>
 		<label for="phone">Phone (optional):</label>
 		<InputFieldPhone name="phone" id="phone"/>
-<!--		<input autocomplete="tel" type="tel" name="phone" id="phone">-->
 	</div>
 	<div>
 		<label for="occupation">Are you a:</label>
@@ -97,7 +96,7 @@
 			<option value=""></option>
 			<option value="STUDENT">Student</option>
 			<option value="PARENT">Parent</option>
-			<option value="STAFF">Staff / Faculty</option>
+			<option value="STAFF">Staff Member</option>
 			<option value="COMMUNITY_MEMBER">Community Member</option>
 		</select>
 	</div>
@@ -138,11 +137,13 @@
         display: flex;
         flex-direction: row;
         gap: 1rem;
+				margin-bottom: .5rem;
     }
 
     /*	Make the labels the same width */
     label {
         width: 200px;
+				font-weight: 500;
     }
 
     label[for=message] {
