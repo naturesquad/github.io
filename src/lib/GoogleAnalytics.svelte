@@ -5,17 +5,16 @@
 	export let measurementID;
 
 	function gtag() {
-		dataLayer.push(arguments);
+		window.dataLayer?.push(arguments);
 	}
 
-	if (browser) {
-		window.dataLayer = window.dataLayer || [];
+	$: if (browser) {
 		gtag('js', new Date());
+		gtag('config', measurementID, {
+			page_title: $page.url.pathname,
+			page_path: $page.url.pathname
+		});
 	}
-	$: gtag('config', measurementID, {
-		page_title: $page.url.pathname,
-		page_path: $page.url.pathname
-	});
 </script>
 
 <svelte:head>
