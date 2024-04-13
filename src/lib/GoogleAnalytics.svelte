@@ -1,15 +1,17 @@
 <script>
 	import { page } from '$app/stores';
+	import { browser } from '$app/environment';
 
 	export let measurementID;
-
-	window.dataLayer = window.dataLayer || [];
 
 	function gtag() {
 		dataLayer.push(arguments);
 	}
 
-	gtag('js', new Date());
+	if (browser) {
+		window.dataLayer = window.dataLayer || [];
+		gtag('js', new Date());
+	}
 	$: gtag('config', measurementID, {
 		page_title: $page.url.pathname,
 		page_path: $page.url.pathname
