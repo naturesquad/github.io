@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { onNavigate } from '$app/navigation';
+	import GoogleAnalytics from '$lib/GoogleAnalytics.svelte';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -20,6 +21,7 @@
 	<meta name="robots" content="index, follow">
 </svelte:head>
 
+<GoogleAnalytics measurementID="G-MBZNY2G82T" />
 <header>
 	<div class="top-header">
 		<h1>Evergreen Student Problem Solvers</h1>
