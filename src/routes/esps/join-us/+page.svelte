@@ -66,6 +66,7 @@
 					toaster.add('Error submitting form: ' + error.message);
 				}
 			} else {
+				gtag("event", "sign_up", { method: "Form" });
 				toaster.add('Form submitted successfully!');
 				event.target.reset();
 			}

@@ -1,29 +1,21 @@
-<script lang="ts">
+<script>
 	import { page } from '$app/stores';
 
-	export let measurementID: string;
+	export let measurementID;
 
-	$: if (typeof gtag !== 'undefined') {
-		gtag('config', measurementID, {
-			page_title: document.title,
-			page_path: $page.url.pathname
-		});
+	window.dataLayer = window.dataLayer || [];
+
+	function gtag() {
+		dataLayer.push(arguments);
 	}
 
+	gtag('js', new Date());
+	$: gtag('config', measurementID, {
+		page_title: $page.url.pathname,
+		page_path: $page.url.pathname
+	});
 </script>
 
 <svelte:head>
-	<script
-		async
-		src={"https://www.googletagmanager.com/gtag/js?id=" + measurementID}>
-	</script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-
-		gtag('js', new Date());
-	</script>
+	<script async src={"https://www.googletagmanager.com/gtag/js?id=" + measurementID} />
 </svelte:head>
