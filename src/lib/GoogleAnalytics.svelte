@@ -4,15 +4,17 @@
 
 	export let measurementID;
 
-	function gtag() {
+	export function gtag() {
 		window.dataLayer?.push(arguments);
 	}
 
 	$: if (browser) {
+		window.gtag = gtag;
 		gtag('js', new Date());
 		gtag('config', measurementID, {
 			page_title: $page.url.pathname,
-			page_path: $page.url.pathname
+			page_path: $page.url.pathname,
+			cookie_flags: 'SameSite=None; Secure'
 		});
 	}
 </script>
