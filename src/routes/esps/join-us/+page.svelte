@@ -142,8 +142,14 @@
     div {
         display: flex;
         flex-direction: row;
-        gap: 1rem;
+        gap: 0 1rem;
 				margin-bottom: .5rem;
+    }
+
+    @media (max-width: 540px) {
+        form > div {
+            flex-direction: column;
+        }
     }
 
     /*	Make the labels the same width */
@@ -163,6 +169,10 @@
     textarea {
         flex: 1;
 				box-sizing: border-box;
+		}
+
+		select {
+				cursor: pointer;
 		}
 
 		label:has(input[name="schools"]) {

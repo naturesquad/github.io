@@ -70,6 +70,7 @@
 				padding:0;
 				margin: 0;
 				text-wrap: balance;
+				letter-spacing: 0.1rem;
     }
 
     #icon {
