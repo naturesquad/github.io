@@ -1,9 +1,7 @@
 <script>
-	import { supabase } from '$lib/supabaseClient.js';
 	import ToastGroup from '$lib/ToastGroup.svelte';
 	import InputFieldPhone from '$lib/InputFieldPhone.svelte';
 
-	let busy = false;
 	const schools = [
 		{ type: 'Specialty Schools', name: 'Archway Academy', value: 'ARCHWAY' },
 		{ type: 'Specialty Schools', name: 'Cascadia Tech', value: 'CASCADIA' },
@@ -42,39 +40,17 @@
 	];
 	let selectedSchools = [];
 
-	function handleSubmit(event) {
-		const formData = new FormData(event.target);
-		const data = Object.fromEntries(formData.entries());
-		data.schools = `{${formData.getAll('schools').join(', ')}}`;
-		data.phone = data.phone.replace(/\D/g, '');
+	const formID = '1FAIpQLSehOgPNCY1Ie2s158Rft-f16xH0LhViZPW0XKKuqrh_4Ucpvg';
+	let form;
+	let toaster;
 
-		Object.keys(data).forEach(key => {
-			if (!data[key]) {
-				delete data[key];
-			}
-		});
-		console.log({ data })
-
-		// insert a new contact form
-		busy = true;
-		supabase.from('contact_form').insert([data]).then(({ error }) => {
-			if (error) {
-				/* if error contains "contact_form_email_idx" */
-				if (error.message.includes('contact_form_email_idx')) {
-					toaster.add('Error submitting form: Email address already exists');
-				} else {
-					toaster.add('Error submitting form: ' + error.message);
-				}
-			} else {
-				gtag("event", "sign_up", { method: "Form" });
-				toaster.add('Form submitted successfully!');
-				event.target.reset();
-			}
-			busy = false;
-		});
+	function onframeload() {
+		gtag("event", "sign_up", { method: "Form" });
+		toaster?.add('Form submitted successfully!');
+		form?.reset();
+		selectedSchools = [];
 	}
 
-	let toaster;
 </script>
 
 <svelte:head>
@@ -83,22 +59,24 @@
 </svelte:head>
 
 <ToastGroup bind:this={toaster} />
-<form method="POST" on:submit|preventDefault={handleSubmit}>
+
+<iframe id="gFormsIFrame" name="gFormsIFrame" title="Google Forms" onload={onframeload}></iframe>
+<form bind:this={form} method="POST" target="gFormsIFrame" action="https://docs.google.com/forms/u/0/d/e/{formID}/formResponse">
 	<div>
 		<label for="name">Name: *</label>
-		<input required autocomplete="given-name" type="text" name="name" id="name">
+		<input required autocomplete="given-name" type="text" name="entry.2005620554" id="name">
 	</div>
 	<div>
 		<label for="email">Email address: *</label>
-		<input required autocomplete="email" type="email" name="email" id="email">
+		<input required autocomplete="email" type="email" name="entry.1045781291" id="email">
 	</div>
 	<div>
 		<label for="phone">Phone (optional):</label>
-		<InputFieldPhone name="phone" id="phone"/>
+		<InputFieldPhone name="entry.1166974658" id="phone"/>
 	</div>
 	<div>
 		<label for="occupation">Are you a:</label>
-		<select name="occupation" id="occupation" autocomplete="occupation">
+		<select name="entry.1065046570" id="occupation" autocomplete="occupation">
 			<option value=""></option>
 			<option value="STUDENT">Student</option>
 			<option value="PARENT">Parent</option>
@@ -123,12 +101,13 @@
 				{/each}
 			</ul>
 		</details>
+		<input type="hidden" name="entry.297901204" value={selectedSchools.join(', ')}/>
 	</div>
 	<label for="message">Any other feedback or comments you want to share with us:</label>
 	<div>
-		<textarea name="message" id="message"></textarea>
+		<textarea name="entry.839337160" id="message"></textarea>
 	</div>
-	<input type="submit" value="Submit" aria-busy={busy}>
+	<input type="submit" value="Submit">
 </form>
 
 <style>
@@ -186,5 +165,12 @@
 
 		input[type="submit"] {
 			font-weight: bold;
+		}
+
+    #gFormsIFrame {
+				visibility: hidden;
+				position: absolute;
+				width: 0;
+				height: 0;
 		}
 </style>
